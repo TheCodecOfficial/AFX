@@ -3,31 +3,40 @@ var comp = app.project.activeItem;
 clean(1);
 
 var win = new Window("palette", "AFX");
+var logo = win.add ("image", undefined, File ("AFX logo.png"));
+
 var g = win.add("group", undefined, "groupOne");
 g.orientation = "column";
 
-g.add("statictext", undefined, "Auto-generate common edit fx and color grading for synced edits.");
+var panel = g.add("panel", undefined);
+panel.orientation = "row";
+panel.add("statictext", undefined, "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.", { multiline: true });
+var presetPanel = panel.add("panel", undefined, "Presets");
+presetPanel.add("dropdownlist", undefined, ["None", "Basic", "Twitch"]);
+presetPanel.add("statictext", undefined, "A set of popular \npresets to choose from", { multiline: true });
+
+/*g.add("statictext", undefined, "Auto-generate common edit fx and color grading for synced edits.");
 var tg = g.add("group", undefined, "susgroup");
 tg.orientation = "row";
+
+var panel = tg.add("panel", undefined, "Preset");
+var ddp = panel.add("dropdownlist", undefined, ["None", "Twitch"]);
+ddp.selection = 0;
 
 var panel = tg.add("panel", undefined, "Fade In");
 var dd1 = panel.add("dropdownlist", undefined, ["None", "Basic", "Twitch"]);
 dd1.selection = 1;
 
 var panel = tg.add("panel", undefined, "Fade Out");
-var dd1 = panel.add("dropdownlist", undefined, ["None", "Basic", "Twitch"]);
-dd1.selection = 1;
+var dd2 = panel.add("dropdownlist", undefined, ["None", "Basic", "Twitch"]);
+dd2.selection = 1;
 
-var panel = tg.add("panel", undefined, "Transitions");
-var dd1 = panel.add("dropdownlist", undefined, ["None", "Basic", "Twitch"]);
-dd1.selection = 1;
-var panel = tg.add("panel", undefined, "Drop");
-var dd1 = panel.add("dropdownlist", undefined, ["None", "Basic", "Twitch"]);
-dd1.selection = 1;
-var panel = tg.add("panel", undefined, "Bursts");
-var dd1 = panel.add("dropdownlist", undefined, ["None", "Basic", "Twitch"]);
-dd1.selection = 1;
-
+ddp.onChange = function () {
+    if (ddp.selection.text == "Twitch") {
+        dd1.selection = dd1.find("Twitch");
+        dd2.selection = dd2.find("Twitch");
+    }
+}*/
 
 var sg = g.add("group", undefined, "subgroup");
 var startbutton = sg.add("button", undefined, "Start");
@@ -37,10 +46,15 @@ win.show();
 
 startbutton.onClick = function () {
 
-    // Fade in time 1 s
+    // Fade in/out time 1s
+
+    var cp = $.colorPicker("0xFF0000");
+    alert(cp);
+
     var fadeInTime = 1;
     var complength = comp.duration;
     var opacity = comp.layer(1).opacity;
+
     opacity.setValueAtTime(0, 0);
     opacity.setValueAtTime(fadeInTime, 100);
 
