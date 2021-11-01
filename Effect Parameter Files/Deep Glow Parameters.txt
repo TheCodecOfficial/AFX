@@ -1,0 +1,39 @@
+Deep Glow
+1: Radius
+2: Exposure
+3: Input
+4: Threshold
+5: Threshold Smooth
+7: Style
+8: Blend Mode
+9: Smooth Blending
+10: Gamma Correction
+11: Auto Detect Gamma
+13: Gamma Correction
+15: Aspect Ratio
+16: Spread
+17: Chromatic Aberration
+18: Enable
+19: Channels
+20: Amount
+22: Tint
+23: Enable
+24: Color
+25: Mode
+26: Mix
+29: Quality
+30: Downsample
+31: Steps Multiplier
+32: Glow Iterations
+33: Dither
+34: Enable Dither
+35: Monochromatic
+36: Amount
+39: View
+40: Source Opacity
+41: Unmult
+42: Left
+43: Top
+44: Right
+45: Bottom
+46: Compositing Options

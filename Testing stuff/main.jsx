@@ -11,9 +11,22 @@ var spb = 1 / bps;
 
 var offset = getDropTime();
 
-for (var i = 0; i < 8; i++) {
+/*for (var i = 0; i < 8; i++) {
     var time = offset + (i * 8) * spb;
     makeAdjLayer(time - 0.2, time + 0.2, "BEAT " + i);
+}*/
+
+var adj = makeAdjLayer(1, 2, "tiwttchy");
+var twitchy = File("Twitchy.ffx");
+
+var win = new Window("palette", "PRESET");
+var button = win.add("button", undefined, "Apply Preset");
+win.show();
+
+button.onClick = function(){
+    comp.time = 1;
+    adj.selected = true;
+    adj.applyPreset(twitchy);
 }
 
 function makeAdjLayer(from, to, name) {
@@ -22,7 +35,9 @@ function makeAdjLayer(from, to, name) {
     adj.adjustmentLayer = true;
     adj.inPoint = from;
 
-    adj.property("Effects").addProperty("Deep Glow");
+    return adj;
+
+    /*adj.property("Effects").addProperty("Deep Glow");
     var fx = adj.effect(1);
     fx.property(2).setValueAtTime(from, 0);
     fx.property(2).setValueAtTime(from+0.2, 0.5);
@@ -32,10 +47,7 @@ function makeAdjLayer(from, to, name) {
     var fx2 = adj.effect(2);
     fx2.property(4).setValueAtTime(from, 100);
     fx2.property(4).setValueAtTime(from+0.2, 150);
-    fx2.property(4).setValueAtTime(from+0.4, 100);
-    /*for (var i = 0; i < 100; i++){
-        fx.property(2).setValueAtTime(from + i/100, Math.sin(i/10)+1);
-    }*/
+    fx2.property(4).setValueAtTime(from+0.4, 100);*/
 }
 
 function getDropTime() {

@@ -1,0 +1,63 @@
+Twitch
+1: Amount
+2: speed
+3: Enable
+4: Blur
+5: Color
+6: Light
+7: Scale
+8: Slide
+9: Time
+11: Behaviour
+12: Ease In
+13: Ease Out
+14: Border
+15: Show Twitch Only
+16: Seed
+17: Randomize Minimum
+19: Operator Controls
+20: Blur
+21: Blur Amount
+22: Blur Twitches [sec]
+23: Blur Tint
+24: Blur Holdout
+25: Blur Holdout Sharpness
+26: Blur Boost
+27: Blur Opacity
+28: Blur Transfer Mode
+29: Blur Aspect
+30: Use Lens Blur
+31: Unique Blur Seed
+33: Color
+34: Color Amount
+35: Color Twitches [sec]
+36: Colorize
+37: Color Randomize
+38: Unique Color Seed
+40: Light
+41: Light Amount
+42: Light Twitches [sec]
+43: Light Behaviour
+44: Unique Light Seed
+46: Scale
+47: Scale Amount
+48: Scale Twitches [sec]
+49: Scale Origin
+50: Scale Origin Randomize
+51: Scale Motion Blur
+52: Unique Scale Seed
+54: Slide
+55: Slide Amount
+56: Slide Twitches [sec]
+57: Slide Direction
+58: Slide Spread
+59: Slide Tendency
+60: Slide RGB Split
+61: Slide Motion Blur
+62: Unique Slide Seed
+64: Time
+65: Time Amount
+66: Time Twitches [sec]
+67: Time Direction
+68: Unique Time Seed
+71: Compositing Options
