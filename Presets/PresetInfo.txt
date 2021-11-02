@@ -1,0 +1,10 @@
+FadeInBasic
+0
+FadeInTwitch
+0
+FadeOutBasic
+0
+FadeOutTwitch
+0
+Glow
+0

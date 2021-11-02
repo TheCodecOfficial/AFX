@@ -1,8 +1,10 @@
 
 //@include "AP_Layer.jsx"
 //@include "util.jsx"
+//@include "AP_data.jsx"
 
 var comp = app.project.activeItem;
+var end = comp.duration;
 
 //#region UI
 var w = new Window("palette", "AFX AP");
@@ -21,6 +23,7 @@ var panelFadeOut = ddg.add("panel", undefined, "Fade Out");
 var ddFadeOut = panelFadeOut.add("dropdownlist", undefined, ["None", "Basic", "Twitch"]);
 ddFadeOut.selection = 1;
 
+var protectedLayerCount = btg.add("edittext", undefined, 7);
 var generateButton = btg.add("button", undefined, "Generate FX");
 var cancelButton = btg.add("button", undefined, "Cancel");
 
@@ -29,33 +32,39 @@ w.show();
 
 generateButton.onClick = function () {
 
-    clean(1);
+    clean(protectedLayerCount.text);
 
-    var fadeIn = ddFadeIn.selection.text;
-    var fadeInLayer = new layer(0, 1, "Fade In");
-    switch (fadeIn) {
-        case "Basic":
-            fadeInLayer.applyPreset("FadeInBasic");
-            break;
-        case "Twitch":
-            fadeInLayer.applyPreset("FadeInTwitch");
-            break;
-        default:
-            break;
+    var timestamps = findCuts();
+
+    for (var i = 0; i < timestamps.length; i++){
+        var t = timestamps[i];
+        var l = new layer(t-0.5, t+0.5, "Transition");
+        l.applyPreset(getPreset("Glow"));
     }
 
-    var fadeOut = ddFadeOut.selection.text;
-    var fadeOutLayer = new layer(comp.duration - 1, comp.duration+1, "Fade Out");
-    switch (fadeOut) {
-        case "Basic":
-            fadeOutLayer.applyPreset("FadeOutBasic");
-            break;
-        case "Twitch":
-            fadeOutLayer.applyPreset("FadeOutTwitch");
-            break;
-        default:
-            break;
+    evaluateDD(ddFadeIn, "FadeIn", 0, 1);
+    evaluateDD(ddFadeOut, "FadeOut", end-1, end);
+
+}
+
+function findCuts(){
+
+    var timestamps = [];
+    
+    for (var i = 1; i < comp.numLayers; i++){
+        timestamps.push(comp.layer(i).inPoint);
     }
+
+    return timestamps;
+
+}
+
+function evaluateDD(dropdown, fxtype, from, to){
+    var selection = fxtype + dropdown.selection.text;
+    var adjLayer = new layer(from, to, selection);
+    var preset = getPreset(selection);
+
+    adjLayer.applyPreset(preset);
 }
 
 cancelButton.onClick = function(){

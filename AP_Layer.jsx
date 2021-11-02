@@ -15,22 +15,18 @@ function layer(from, to, name) {
 
     this.applyPreset = function (preset) {
         // Deselect all layers
-        for (var i = 1; i <= comp.layers.length; i++) {
+        for (var i = 1; i <= comp.numLayers; i++) {
             comp.layer(i).selected = false;
         }
 
         // Select this layer
         this.reference.selected = true;
 
-        // Set comp time to 'from'
-        comp.time = this.from;
-
-        // Get preset
-        var path = File($.fileName).path + encodeURI("/Presets/" + preset + ".ffx");
-        var preset = File(path);
+        // Set comp time to 'from' + offset
+        comp.time = this.from + preset.offset;
 
         // Apply preset
-        this.reference.applyPreset(preset);
+        this.reference.applyPreset(preset.file);
     }
 
 }
